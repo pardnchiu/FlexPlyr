@@ -41,7 +41,7 @@ npm i @pardnchiu/flexplyr
 
 ### 從 CDN 引入
 
-#### 引入 `FlexPlyr` 套件
+#### UMD 版本
 ```html
 <!--  2.2.4 版本以上 -->
 <script src="https://cdn.jsdelivr.net/npm/@pardnchiu/flexplyr@[VERSION]/dist/FlexPlyr.js"></script>
@@ -50,7 +50,7 @@ npm i @pardnchiu/flexplyr
 <script src="https://cdn.jsdelivr.net/npm/pdplayerkit@[VERSION]/dist/PDPlayerKit.js"></script>
 ```
 
-#### Module 版本
+#### ES Module 版本
 ```javascript
 // 2.2.4 版本以上
 import { FPlyr } from "https://cdn.jsdelivr.net/npm/@pardnchiu/flexplyr@[VERSION]/dist/FlexPlyr.esm.js";

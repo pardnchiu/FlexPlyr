@@ -42,13 +42,13 @@
 ## Installation
 
 ### Install via npm
-```bash
+```Shell
 npm i @pardnchiu/flexplyr
 ```
 
 ### Include via CDN
 
-#### Import the `FlexPlyr` library
+#### UMD Version
 ```html
 <!-- Version 2.2.4 and above -->
 <script src="https://cdn.jsdelivr.net/npm/@pardnchiu/flexplyr@[VERSION]/dist/FlexPlyr.js"></script>
@@ -57,7 +57,7 @@ npm i @pardnchiu/flexplyr
 <script src="https://cdn.jsdelivr.net/npm/pdplayerkit@[VERSION]/dist/PDPlayerKit.js"></script>
 ```
 
-#### Module version
+#### ES Module Version
 ```javascript
 // Version 2.2.4 and above
 import { FPlyr } from "https://cdn.jsdelivr.net/npm/@pardnchiu/flexplyr@[VERSION]/dist/FlexPlyr.esm.js";

@@ -1,6 +1,6 @@
 {
     "name": "@pardnchiu/flexplyr",
-    "version": "2.2.6",
+    "version": "2.2.7",
     "description": "FlexPlyr is a lightweight JavaScript library that provides embedded HTML5 video players and YouTube players, featuring highly customizable control panels and visual effects.",
     "main": "dist/FlexPlyr.js",
     "scripts": {
@@ -22,14 +22,14 @@
         "url": "git+https://github.com/pardnchiu/FlexPlyr.git"
     },
     "keywords": [
+        "javascript-library",
         "video-player",
         "media-player",
-        "html5-video",
-        "youtube",
-        "vimeo",
-        "javascript-library",
-        "lightweight",
-        "customizable"
+        "audio-player",
+        "youtube-player",
+        "vimeo-player",
+        "邱敬幃",
+        "pardnchiu"
     ],
     "author": "Pardn Chiu",
     "license": "Proprietary",
