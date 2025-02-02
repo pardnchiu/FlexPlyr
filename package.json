@@ -1,13 +1,17 @@
 {
     "name": "@pardnchiu/flexplyr",
-    "version": "2.2.7",
+    "version": "2.2.8",
     "description": "FlexPlyr is a lightweight JavaScript library that provides embedded HTML5 video players and YouTube players, featuring highly customizable control panels and visual effects.",
     "main": "dist/FlexPlyr.js",
     "scripts": {
-        "minify": "npx terser src/js/*.js src/js/function/*.js src/js/model/*.js -c -m -o dist/FlexPlyr.js --config-file terser.config.json --name-cache terser.cache.json && npx terser src/js/*.js src/js/function/*.js src/js/model/*.js -c -m -o dist/FlexPlyr.esm.js --config-file terser.config.json --name-cache terser.cache.json && echo 'export const player = window.FPlyr; export const FPlyr = window.FPlyr;' >> dist/FlexPlyr.esm.js",
-        "minify-w": "chokidar src/js/*.js src/js/function/*.js src/js/model/*.js -c 'npm run minify'",
-        "sass": "sass src/scss:dist -w --style compressed --no-source-map",
-        "sass-index": "sass static/sass/:static/css/ -w --style compressed --no-source-map"
+        "build:debug": "npx terser src/js/*.js src/js/**/*.js -o dist/FlexPlyr.debug.js",
+        "build:min": "npx terser src/js/*.js src/js/**/*.js -c -m -o dist/FlexPlyr.js --config-file terser.config.json",
+        "build:esm": "npx terser src/js/*.js src/js/**/*.js -c -m -o dist/FlexPlyr.esm.js --config-file terser.config.json && echo 'export const player = window.FPlyr; export const FPlyr = window.FPlyr;' >> dist/FlexPlyr.esm.js",
+        "build:once": "npm-run-all build:debug build:min build:esm",
+        "build": "chokidar src/js/*.js src/js/**/*.js -c 'npm run build:once'",
+        "sass:library": "sass src/sass:dist/ -w --style compressed --no-source-map",
+        "sass:index": "sass static/sass/:static/css/ -w --style compressed --no-source-map",
+        "sass": "npm-run-all sass:library sass:index"
     },
     "publishConfig": {
         "access": "public"
@@ -32,7 +36,7 @@
         "pardnchiu"
     ],
     "author": "Pardn Chiu",
-    "license": "Proprietary",
+    "license": "MIT",
     "bugs": {
         "url": "https://github.com/pardnchiu/FlexPlyr/issues"
     },

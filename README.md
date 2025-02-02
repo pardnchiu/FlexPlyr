@@ -136,12 +136,7 @@ const dom = new FPlyr({
 
 ## License
 
-Similar to MIT License but provides obfuscated code only:
-- Same as MIT: Free to use, modify and redistribute, including commercial use 
-- Main difference: Provides obfuscated code by default, source code available for purchase
-- License terms: Must retain original copyright notice (same as MIT)
-
-For detailed terms and conditions, please see the [Software Usage Agreement](https://github.com/pardnchiu/FlexPlyr/blob/main/LICENSE).
+This source code project is licensed under the [MIT](https://github.com/pardnchiu/FlexPlyr/blob/main/LICENSE) license.
 
 ## Creator
 
