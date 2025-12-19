@@ -1,18 +1,16 @@
-<img src="https://flexplyr.pardn.io/static/image/logo.png" width=80>
+![](cover.png)
 
 # FlexPlyr: Modular Media Player
 
-> [!NOTE]
-> (Previously known as PDPlayerKit, renamed to FlexPlyr starting from version `2.2.4`)
+[![Author](https://img.shields.io/badge/Author-邱敬幃%20Pardn%20Chiu-white)](https://github.com/pardnchiu)
+[![license](https://img.shields.io/github/license/pardnchiu/flexplyr)](LICENSE)
+[![npm](https://img.shields.io/npm/v/@pardnchiu/flexplyr)](https://www.npmjs.com/package/@pardnchiu/flexplyr)
+[![jsdeliver](https://img.shields.io/jsdelivr/npm/hm/@pardnchiu/flexplyr)](https://www.jsdelivr.com/package/npm/@pardnchiu/flexplyr)
 
 >  A modular Media Player built with pure JavaScript, Supports HTML5, YouTube, Vimeo with flexible themes and a complete control panel.
 
-![tag](https://img.shields.io/badge/tag-JavaScript%20Library-bb4444) 
-![size](https://img.shields.io/github/size/pardnchiu/FlexPlyr/dist%2FFlexPlyr.js)<br>
-[![npm](https://img.shields.io/npm/v/@pardnchiu/flexplyr)](https://www.npmjs.com/package/@pardnchiu/flexplyr)
-[![download](https://img.shields.io/npm/dm/@pardnchiu/flexplyr)](https://www.npmjs.com/package/@pardnchiu/flexplyr)
-[![jsdeliver](https://img.shields.io/jsdelivr/npm/hm/@pardnchiu/flexplyr)](https://www.jsdelivr.com/package/npm/@pardnchiu/flexplyr)<br>
-[![](https://img.shields.io/badge/查閱-中文版本-ffffff)](https://github.com/pardnchiu/FlexPlyr/blob/main/README.zh.md)
+> [!NOTE]
+> (Previously known as PDPlayerKit, renamed to FlexPlyr starting from version `2.2.4`)
 
 ## Features
 

@@ -1,18 +1,16 @@
-<img src="https://flexplyr.pardn.io/static/image/logo.png" width=80>
+![](cover.png)
 
 # FlexPlyr
 
-> [!NOTE]
-> (原名：PDPlayerKit，自 `2.2.4` 版本起更名為 FlexPlyr)
+[![Author](https://img.shields.io/badge/Author-邱敬幃%20Pardn%20Chiu-white)](https://github.com/pardnchiu)
+[![license](https://img.shields.io/github/license/pardnchiu/flexplyr)](LICENSE)
+[![npm](https://img.shields.io/npm/v/@pardnchiu/flexplyr)](https://www.npmjs.com/package/@pardnchiu/flexplyr)
+[![jsdeliver](https://img.shields.io/jsdelivr/npm/hm/@pardnchiu/flexplyr)](https://www.jsdelivr.com/package/npm/@pardnchiu/flexplyr)
 
 > 純 JavaScript 打造的模組化媒體播放器，支援 HTML5、YouTube、Vimeo，提供靈活主題與完整控制面板。
 
-![tag](https://img.shields.io/badge/tag-JavaScript%20Library-bb4444) 
-![size](https://img.shields.io/github/size/pardnchiu/FlexPlyr/dist%2FFlexPlyr.js)<br>
-[![npm](https://img.shields.io/npm/v/@pardnchiu/flexplyr)](https://www.npmjs.com/package/@pardnchiu/flexplyr)
-[![download](https://img.shields.io/npm/dm/@pardnchiu/flexplyr)](https://www.npmjs.com/package/@pardnchiu/flexplyr)
-[![jsdeliver](https://img.shields.io/jsdelivr/npm/hm/@pardnchiu/flexplyr)](https://www.jsdelivr.com/package/npm/@pardnchiu/flexplyr)<br>
-[![](https://img.shields.io/badge/read-English%20Version-ffffff)](https://github.com/pardnchiu/FlexPlyr/blob/main/README.md)
+> [!NOTE]
+> (原名：PDPlayerKit，自 `2.2.4` 版本起更名為 FlexPlyr)
 
 ## 特點
 
@@ -144,6 +142,10 @@ const dom = new FPlyr({
 </a> <a href="https://linkedin.com/in/pardnchiu" target="_blank">
     <img src="https://pardn.io/image/linkedin.svg" width="48" height="48">
 </a>
+
+## 星
+
+[![Star](https://api.star-history.com/svg?repos=pardnchiu/FlexPlyr&type=Date)](https://www.star-history.com/#pardnchiu/FlexPlyr&Date)
 
 ***
 
