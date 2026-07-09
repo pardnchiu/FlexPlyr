@@ -15,3 +15,4 @@ memo.md
 
 # 保留編譯結果資料夾
 !dist/
+worker/.wrangler/
