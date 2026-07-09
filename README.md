@@ -5,7 +5,7 @@
 
 <p align="center">
 <picture>
-<img src="./cover.png" alt="FlexPlyr">
+<img src="./doc/cover.png" alt="FlexPlyr">
 </picture>
 </p>
 
