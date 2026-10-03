@@ -4,13 +4,7 @@
 ***
 
 <p align="center">
-<picture>
-<img src="./cover.png" alt="FlexPlyr">
-</picture>
-</p>
-
-<p align="center">
-<strong>ONE PLAYER FOR HTML5, YOUTUBE AND VIMEO — ZERO DEPENDENCIES</strong>
+<strong>ONE PLAYER API FOR HTML5, YOUTUBE AND VIMEO</strong>
 </p>
 
 <p align="center">
@@ -21,7 +15,7 @@
 
 ***
 
-> 輕量 JavaScript 播放器函式庫，統一支援 HTML5、YouTube 與 Vimeo 播放來源，具備主題化控制面板與完整生命週期事件
+> JavaScript 播放器函式庫，具備 HTML5／YouTube／Vimeo 統一來源、多風格控制面板與生命週期事件
 
 ## 目錄
 
@@ -34,11 +28,11 @@
 
 > `npm i @pardnchiu/flexplyr` · [完整文件](./doc.zh.md)
 
-- **單一介面統一四種來源** — 同一個 `FPlyr` class 依傳入設定自動切換 HTML5 影片／音訊、YouTube、Vimeo，呼叫端無需分別處理。
-- **四種內建主題面板** — Minimal、Classic、Retro、Simple 四種面板風格，控制按鈕（播放、進度、音量、速度、全螢幕）可自由組合顯示。
-- **零依賴、原生 API 驅動** — 僅在需要時才動態載入 YouTube／Vimeo SDK，其餘完全基於瀏覽器原生 API，體積輕巧。
-- **完整生命週期事件** — 提供 `ready`、`playing`、`pause`、`end`、`destroyed` 事件回調，方便串接外部邏輯。
-- **行動裝置全螢幕處理** — 針對行動裝置另建獨立全螢幕播放器實例，處理 `playsinline` 與全螢幕狀態切換等邊界情況。
+- **四種來源一個介面** — 以同一個 `FPlyr` 設定物件驅動 HTML5 影片、音訊、YouTube 與 Vimeo，播放、暫停、音量、倍速操作對呼叫端完全一致。
+- **四種面板風格自由組裝** — 內建 minimal、classic、retro、simple 四種面板，八種控制元件可依需求挑選與排序。
+- **單一 script 即可上線** — 載入時自動注入樣式表、Material Symbols 圖示與 YouTube／Vimeo SDK，無需建置流程或額外引入。
+- **完整生命週期事件** — `ready`、`playing`、`pause`、`end`、`destroyed` 五個回呼，方便串接外部邏輯與資源回收。
+- **行動裝置全螢幕同步** — 以隱藏的專用全螢幕播放器接手播放，進出全螢幕時自動同步進度、音量與倍速。
 
 ## 架構
 
@@ -46,10 +40,16 @@
 
 ```mermaid
 graph TB
-    A[FPlyr 設定] --> B[FPlyr Core]
-    B --> C[playerPanel 控制面板]
-    B --> D[原生 / YouTube / Vimeo 播放來源]
-    D --> E[when 生命週期事件]
+    A[FPlyr 設定] --> B[FPlyr 核心]
+    H[載入時注入 head 資源] -.-> B
+    B --> C[來源分派]
+    C --> D[HTML5 video / audio]
+    C --> E[YouTube IFrame API]
+    C --> F[Vimeo Player API]
+    B --> G[playerPanel 控制面板]
+    D & E & F --> I[狀態處理]
+    I --> G
+    I --> J[when 生命週期回呼]
 ```
 
 ## 授權
@@ -58,12 +58,11 @@ graph TB
 
 ## Author
 
-<img src="https://github.com/pardnchiu.png" align="left" width="96" height="96" style="margin-right: 0.5rem;">
+Just [open an issue](https://github.com/pardnchiu/FlexPlyr/issues/new) to share an idea.
 
-<h4 style="padding-top: 0">邱敬幃 Pardn Chiu</h4>
-
-<a href="mailto:hi@pardn.io">hi@pardn.io</a><br>
-<a href="https://www.linkedin.com/in/pardnchiu">https://www.linkedin.com/in/pardnchiu</a>
+<a href="https://github.com/pardnchiu/FlexPlyr/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=pardnchiu/FlexPlyr&cache_bust=2026-10-04" alt="FlexPlyr contributors" />
+</a>
 
 ***
 

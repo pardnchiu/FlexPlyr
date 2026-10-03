@@ -4,13 +4,7 @@
 ***
 
 <p align="center">
-<picture>
-<img src="./doc/cover.png" alt="FlexPlyr">
-</picture>
-</p>
-
-<p align="center">
-<strong>ONE PLAYER FOR HTML5, YOUTUBE AND VIMEO — ZERO DEPENDENCIES</strong>
+<strong>ONE PLAYER API FOR HTML5, YOUTUBE AND VIMEO</strong>
 </p>
 
 <p align="center">
@@ -21,7 +15,7 @@
 
 ***
 
-> A lightweight JavaScript library for embeddable HTML5, YouTube, and Vimeo players with themeable panels and full lifecycle events
+> A JavaScript player library with unified HTML5/YouTube/Vimeo sources, themed control panels, and lifecycle events
 
 ## Table of Contents
 
@@ -34,11 +28,11 @@
 
 > `npm i @pardnchiu/flexplyr` · [Documentation](./doc/doc.md)
 
-- **One interface, four sources** — A single `FPlyr` class auto-switches between HTML5 video/audio, YouTube, and Vimeo based on config, with no source-specific handling required by the caller.
-- **Four built-in themed panels** — Minimal, Classic, Retro, and Simple panel styles, with freely composable control buttons (play, progress, volume, rate, fullscreen).
-- **Zero dependencies, native-API driven** — YouTube/Vimeo SDKs load on demand only when needed; everything else runs on native browser APIs for a tiny footprint.
-- **Full lifecycle events** — `ready`, `playing`, `pause`, `end`, and `destroyed` callbacks make it easy to hook into external logic.
-- **Mobile-aware fullscreen handling** — A dedicated fullscreen player instance handles `playsinline` and fullscreen state transitions on mobile devices.
+- **Four sources, one interface** — A single `FPlyr` config object drives HTML5 video, audio, YouTube, and Vimeo, so play, pause, volume, and speed behave identically for the caller.
+- **Four composable panel themes** — Minimal, Classic, Retro, and Simple panels ship built in, and eight control items can be picked and ordered freely.
+- **One script tag to go live** — On load it injects the stylesheet, Material Symbols icons, and the YouTube/Vimeo SDKs, so no build step or extra includes are needed.
+- **Full lifecycle events** — Five callbacks (`ready`, `playing`, `pause`, `end`, `destroyed`) make it easy to hook in external logic and clean up resources.
+- **Synced mobile fullscreen** — A hidden dedicated fullscreen player takes over on mobile and syncs progress, volume, and speed on entry and exit.
 
 ## Architecture
 
@@ -47,9 +41,15 @@
 ```mermaid
 graph TB
     A[FPlyr Config] --> B[FPlyr Core]
-    B --> C[playerPanel Controls]
-    B --> D[Native / YouTube / Vimeo Source]
-    D --> E[when Lifecycle Events]
+    H[Head Assets Injected on Load] -.-> B
+    B --> C[Source Dispatch]
+    C --> D[HTML5 video / audio]
+    C --> E[YouTube IFrame API]
+    C --> F[Vimeo Player API]
+    B --> G[playerPanel Controls]
+    D & E & F --> I[State Handlers]
+    I --> G
+    I --> J[when Lifecycle Callbacks]
 ```
 
 ## License
@@ -58,12 +58,11 @@ This project is licensed under the [MIT LICENSE](LICENSE).
 
 ## Author
 
-<img src="https://github.com/pardnchiu.png" align="left" width="96" height="96" style="margin-right: 0.5rem;">
+Just [open an issue](https://github.com/pardnchiu/FlexPlyr/issues/new) to share an idea.
 
-<h4 style="padding-top: 0">邱敬幃 Pardn Chiu</h4>
-
-<a href="mailto:hi@pardn.io">hi@pardn.io</a><br>
-<a href="https://www.linkedin.com/in/pardnchiu">https://www.linkedin.com/in/pardnchiu</a>
+<a href="https://github.com/pardnchiu/FlexPlyr/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=pardnchiu/FlexPlyr&cache_bust=2026-10-04" alt="FlexPlyr contributors" />
+</a>
 
 ***
 

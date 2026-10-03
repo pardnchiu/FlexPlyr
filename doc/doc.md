@@ -4,133 +4,256 @@
 
 ## Prerequisites
 
-- A modern browser with ES2020+ support (uses private class fields)
-- If playing YouTube/Vimeo sources, the browser must be allowed to load the corresponding third-party iframe SDKs (`youtube.com/iframe_api`, `player.vimeo.com/api/player.js`)
+- A modern browser that supports ES2022 private fields (`#field`) and CSS `:has()`
+- Network access to `cdn.jsdelivr.net`, `fonts.googleapis.com`, `www.youtube.com`, and `player.vimeo.com` (styles, icons, and SDKs are injected on load)
+- Browser-only: the module touches `document` and `navigator` at load time, so SSR is not supported
+- Node.js and npm to build from source
 
 ## Installation
 
-### Install via npm
+### Via CDN
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@pardnchiu/flexplyr@2.2.9/dist/FlexPlyr.js"></script>
+```
+
+The global `FPlyr` is available once the script loads.
+
+### Via npm
 
 ```bash
 npm i @pardnchiu/flexplyr
 ```
 
-### Include via CDN
-
-#### UMD Version
-
-```html
-<script src="https://cdn.jsdelivr.net/npm/@pardnchiu/flexplyr@[VERSION]/dist/FlexPlyr.js"></script>
-```
-
-#### ES Module Version
-
 ```javascript
-import { FPlyr } from "https://cdn.jsdelivr.net/npm/@pardnchiu/flexplyr@[VERSION]/dist/FlexPlyr.esm.js";
+// The ESM build exports FPlyr
+import { FPlyr } from "@pardnchiu/flexplyr/dist/FlexPlyr.esm.js";
 ```
+
+### From Source
+
+```bash
+git clone https://github.com/pardnchiu/FlexPlyr.git
+cd FlexPlyr
+npm install
+npm run build:debug
+npm run build:min
+npm run build:esm
+npx sass src/scss:dist/ --style compressed --no-source-map
+```
+
+| Output | Description |
+|--------|-------------|
+| `dist/FlexPlyr.js` | Minified build, attaches `window.FPlyr` |
+| `dist/FlexPlyr.debug.js` | Unminified build for debugging |
+| `dist/FlexPlyr.esm.js` | Minified build + `export { FPlyr, player }` |
+| `dist/FlexPlyr.css` | Panel styles |
+
+## Configuration
+
+### Auto-Injected Assets
+
+On load, the module inserts the following into `<head>`; no manual includes are needed:
+
+| Asset | Source |
+|-------|--------|
+| Panel styles | `https://cdn.jsdelivr.net/npm/@pardnchiu/flexplyr@latest/dist/FlexPlyr.css` |
+| Icon font | Google Fonts `Material Symbols Outlined` |
+| YouTube SDK | `https://www.youtube.com/iframe_api` |
+| Vimeo SDK | `https://player.vimeo.com/api/player.js` |
+
+Styles always come from `@latest`, regardless of the JS version you load.
+
+### Container Size
+
+The `.FPlyr` container fills `100%` of its parent; video players have a minimum size of `320 × 180`, and audio players render only the control panel.
 
 ## Usage
 
-### Basic
+### Basic: HTML5 Video
 
-```javascript
-const dom = new FPlyr({
-    // Optional: element ID to replace with the player; if omitted, mount dom.body manually
-    // id: "player-container",
+```html
+<div id="player"></div>
 
-    // Required: pick one media source
-    video: "https://example.com/video.mp4",
-    // audio: "https://example.com/audio.mp3",
-    // youtube: "dQw4w9WgXcQ",
-    // vimeo: "76979871",
-});
-
-// If no id was specified, mount the player manually
-document.body.appendChild(dom.body);
+<script src="https://cdn.jsdelivr.net/npm/@pardnchiu/flexplyr@2.2.9/dist/FlexPlyr.js"></script>
+<script>
+    const player = new FPlyr({
+        id: "player",
+        video: "https://cdn.pixabay.com/video/2023/11/28/191159-889246512_tiny.mp4"
+    });
+</script>
 ```
 
-### Advanced
+### Switching Sources
+
+Pass exactly one of `video`, `youtube`, `vimeo`, or `audio`; if several are given, the first non-empty value in that order wins. The YouTube/Vimeo SDKs are injected asynchronously, so create those players after the window `load` event, or the constructor throws `YT is not defined`/`Vimeo is not defined`.
 
 ```javascript
-const dom = new FPlyr({
-    id: "player-container",
+// YouTube: pass the video ID
+addEventListener("load", () => new FPlyr({ id: "yt", youtube: "O5O3yK8DJCc" }));
+
+// Vimeo: pass the video ID
+addEventListener("load", () => new FPlyr({ id: "vm", vimeo: "76979871" }));
+
+// Audio: renders the control panel only, without a fullscreen button
+new FPlyr({ id: "au", audio: "https://example.com/track.mp3" });
+```
+
+### Custom Panel and Events
+
+```javascript
+const player = new FPlyr({
+    id: "player",
     video: "https://example.com/video.mp4",
-
     option: {
-        // Whether to show the thumbnail, default true
-        showThumb: true,
-        // Panel style: minimal / classic / retro / simple
-        panelType: "classic",
-        // Buttons shown in the control panel
-        panelItem: ["play", "progress", "time", "volumeMini", "rate", "full"],
-        // Default volume
-        volume: 100,
-        // Default mute state
-        mute: false
+        panelType: "retro",
+        panelItem: ["play", "progress", "time", "volume", "rate", "full"],
+        showThumb: false
     },
-
     when: {
-        ready: () => console.log("Player is ready"),
-        playing: () => console.log("Playing"),
-        pause: () => console.log("Paused"),
-        end: () => console.log("Playback ended"),
-        destroyed: () => console.log("Player removed")
+        ready: () => console.log("ready"),
+        playing: () => console.log("playing"),
+        pause: () => console.log("pause"),
+        end: () => console.log("end"),
+        destroyed: () => console.log("destroyed")
+    }
+});
+```
+
+### Advanced: Detached Container + Programmatic Control + Teardown
+
+Without `id` (or when the element is not found), the player creates a standalone `div.FPlyr`; insert `player.body` into the page yourself.
+
+```javascript
+import { FPlyr } from "@pardnchiu/flexplyr/dist/FlexPlyr.esm.js";
+
+const mount = document.querySelector("#mount");
+if (mount == null) {
+    throw new Error("#mount container not found");
+}
+
+const player = new FPlyr({
+    video: "https://cdn.pixabay.com/video/2023/11/28/191159-889246512_tiny.mp4",
+    option: { panelType: "minimal" },
+    when: {
+        ready: () => {
+            // ready fires before the internal source flags are set; act on the next task
+            setTimeout(() => {
+                if (player.isPaused()) {
+                    player.play();
+                }
+            });
+        },
+        end: () => player.destroy()
     }
 });
 
-// Control playback manually
-dom.play();
-dom.pause();
+if (player.body == null) {
+    throw new Error("Player failed to initialize");
+}
+mount.appendChild(player.body);
 
-// Remove the player and detach its listeners
-dom.destroy();
+// Release resources when leaving the page
+window.addEventListener("pagehide", () => player.destroy(), { once: true });
 ```
 
 ## API Reference
 
-### `FPlyr`
+### Constructor
 
 ```javascript
 new FPlyr(config)
 ```
 
-Creates a player instance from `config`. One of `video` / `audio` / `youtube` / `vimeo` must be provided; the matching playback logic is initialized automatically.
+If `config` is not an object, the constructor logs an error via `console.log` and returns early without throwing.
 
-#### PlayerConfig
+### `config`
 
 | Field | Type | Required | Description |
-|------|------|------|------|
-| `id` | `string` | No | Element ID to replace with the player; mount `dom.body` manually if omitted |
-| `video` / `audio` / `youtube` / `vimeo` | `string` | One of | Media source (URL, or YouTube/Vimeo ID) |
-| `option.showThumb` | `boolean` | No | Whether to show the thumbnail, default `true` |
-| `option.panelType` | `string` | No | Panel style: `minimal` / `classic` / `retro` / `simple` |
-| `option.panelItem` | `string[]` | No | Panel buttons, choose from `play`, `progress`, `time`, `timeMini`, `volume`, `volumeMini`, `rate`, `full` |
-| `option.volume` | `number` | No | Default volume (0–100), default `100` |
-| `option.mute` | `boolean` | No | Default mute state, default `false` |
-| `when` | `PlayerEvent` | No | Lifecycle event callbacks |
+|-------|------|----------|-------------|
+| `id` | `string` | No | ID of an existing container element; if omitted or not found, a new `div.FPlyr` is created and `player.body` must be inserted manually |
+| `video` | `string` | One of | HTML5 video URL |
+| `youtube` | `string` | One of | YouTube video ID |
+| `vimeo` | `string` | One of | Vimeo video ID |
+| `audio` | `string` | One of | Audio URL |
+| `option` | `object` | No | Panel and playback options, see below |
+| `when` | `object` | No | Lifecycle callbacks, see below |
 
-#### PlayerEvent
+### `config.option`
 
-| Field | Type | Description |
-|------|------|------|
-| `ready` | `() => void` | Fires when the player is ready |
-| `playing` | `() => void` | Fires when playback starts |
-| `pause` | `() => void` | Fires on pause |
-| `end` | `() => void` | Fires when playback ends |
-| `destroyed` | `() => void` | Fires when the player is removed |
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `panelType` | `string` | `""` | Panel theme: `""` (default), `minimal`, `classic`, `retro`, `simple` |
+| `panelItem` | `string[]` | `["play", "progress", "time", "volumeMini", "rate", "full"]` | Control items, rendered in array order |
+| `showThumb` | `boolean` | `true` | Show the drag thumb on progress and volume sliders |
+| `volume` | `number` | `100` | Initial volume (0–100) |
+| `mute` | `boolean` | `false` | Initial mute state |
 
-#### Methods
+> In the current implementation, `option.volume` and `option.mute` are only applied when the legacy top-level `volume`/`mute` are also passed; even then, applying the volume at readiness unmutes, so the initial mute never takes effect.
 
-| Method | Signature | Description |
-|------|------|------|
-| `isPaused` | `isPaused(isFull?: boolean): boolean` | Returns whether playback is currently paused |
-| `play` | `play(isFull?: boolean): void` | Starts playback |
-| `pause` | `pause(isFull?: boolean): void` | Pauses playback |
-| `isMuted` | `isMuted(isFull?: boolean): boolean` | Returns whether playback is currently muted |
-| `destroy` | `destroy(): void` | Removes the player and detaches all event listeners |
+### `panelItem` Values
 
-> [!NOTE]
-> `type`, `panel`, top-level `volume`, top-level `mute`, and `event` are legacy config fields slated for removal in `3.*.*` — use `option.panelType`, `option.panelItem`, `option.volume`, `option.mute`, and `when` instead.
+| Value | Description |
+|-------|-------------|
+| `play` | Play/pause button |
+| `progress` | Progress bar; seeks 500 ms after dragging and resumes playback |
+| `time` | Current time / total duration (hidden in `minimal`) |
+| `timeMini` | Current time only (hidden in `minimal`) |
+| `volume` | Mute button + always-visible volume slider |
+| `volumeMini` | Collapsible volume button that expands a slider on click |
+| `rate` | Speed cycle: `1 → 1.25 → 1.5 → 2 → 0.5 → 1` |
+| `full` | Fullscreen toggle (hidden for audio sources) |
+
+### `config.when`
+
+| Callback | Fires When |
+|----------|------------|
+| `ready` | Media metadata loads / the SDK player becomes ready |
+| `playing` | Playback starts |
+| `pause` | Playback pauses |
+| `end` | Playback ends and progress resets to 0 |
+| `destroyed` | `destroy()` finishes removing the DOM |
+
+### Methods
+
+| Method | Returns | Description |
+|--------|---------|-------------|
+| `play(isFull?)` | `void` | Play; when `isFull` is `true` on mobile, plays through the fullscreen player |
+| `pause(isFull?)` | `void` | Pause |
+| `isPaused(isFull?)` | `boolean` | Whether playback is paused |
+| `isMuted(isFull?)` | `boolean` | Whether audio is muted |
+| `destroy()` | `void` | Stops timers, destroys SDK players, removes the DOM, then fires `when.destroyed` |
+
+`when.ready` fires before the internal source flags are set, so these methods take effect only from the next task after `ready` (for example via `setTimeout`); earlier calls return `undefined`.
+
+### Properties
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `body` | `HTMLElement` | Player root element (`.FPlyr`) |
+| `option` | `object` | Merged options |
+| `when` | `object` | Lifecycle callbacks |
+| `panel` | `playerPanel` | Control panel instance |
+| `stateFull` | `boolean` | Whether the player is in fullscreen |
+
+### Globals and Exports
+
+| Name | Source | Description |
+|------|--------|-------------|
+| `window.FPlyr` | `FlexPlyr.js` | Main class |
+| `window.PDPlayer` | `FlexPlyr.js` | Legacy alias of `FPlyr`, scheduled for removal in `3.x` |
+| `FPlyr` | `FlexPlyr.esm.js` | ESM named export |
+| `player` | `FlexPlyr.esm.js` | Legacy alias of `FPlyr`, scheduled for removal in `3.x` |
+
+### Options Deprecated in `3.x`
+
+| Legacy | Replacement |
+|--------|-------------|
+| `type` | `option.panelType` |
+| `panel` | `option.panelItem` |
+| `volume` | `option.volume` |
+| `mute` | `option.mute` |
+| `event` | `when` |
 
 ***
 
