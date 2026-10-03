@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://flexplyr.pardn.io/sitemap.xml
