@@ -1,0 +1,12 @@
+[
+  {
+    "package": "src/js/model",
+    "name": "PDPlayer",
+    "kind": "class"
+  },
+  {
+    "package": "src/js/model",
+    "name": "FPlyr",
+    "kind": "class"
+  }
+]

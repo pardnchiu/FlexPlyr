@@ -1,0 +1,107 @@
+{
+  "home_title": {
+    "en": "Video Player and YouTube Player in JS | pardnchiu/FlexPlyr",
+    "zh": "影片播放器、YouTube 播放器與 Vimeo｜pardnchiu/FlexPlyr"
+  },
+  "descriptions": {
+    "en": {
+      "home": "FlexPlyr is a JavaScript video player library by Pardn Chiu (邱敬幃): one API drives HTML5 video and audio, the YouTube player, and Vimeo, with themed panels.",
+      "getting-started": "Load FlexPlyr from jsDelivr or npm, mount a player on an element ID, and wait for the ready callback before calling player methods.",
+      "architecture": "How FlexPlyr is layered: load-time head injection, the FPlyr core, per-source adapters, the playerPanel control bar, and when callbacks.",
+      "media-sources": "Choose between video, audio, youtube, and vimeo sources in FlexPlyr, the priority order when several are set, and waiting for the YouTube and Vimeo SDKs.",
+      "lifecycle-events": "FlexPlyr when callbacks — ready, playing, pause, end, destroyed — when each fires, per-source triggers, and why ready runs before state is set.",
+      "mobile-fullscreen": "How FlexPlyr handles fullscreen: desktop requestFullscreen on the container, and a hidden second player on iOS and Android that syncs time, volume, and speed.",
+      "panel-themes": "The five FlexPlyr panel themes — default, minimal, classic, retro, simple — set with option.panelType and applied through the data-type attribute.",
+      "panel-controls": "Every FlexPlyr panelItem control — play, progress, time, timeMini, volume, volumeMini, rate, full — with ordering rules and the showThumb option.",
+      "configuration": "Full FlexPlyr constructor config: id, source fields, option defaults, when callbacks, detached containers, and how initial volume and mute are applied.",
+      "instance-api": "FlexPlyr instance methods and properties: play, pause, isPaused, isMuted, destroy, body, option, panel, stateFull, plus globals and ESM exports.",
+      "runtime-dependencies": "The stylesheet, Material Symbols font, and YouTube and Vimeo SDK scripts FlexPlyr injects into the page head on load, and what that means for CSP and SSR.",
+      "deprecations": "FlexPlyr options and globals scheduled for removal in 3.x — type, panel, volume, mute, event, PDPlayer, player — with their replacements."
+    },
+    "zh": {
+      "home": "FlexPlyr 是邱敬幃（Pardn Chiu）開發的 JavaScript 影片播放器套件，以單一 API 驅動 HTML5 影音、YouTube 播放器與 Vimeo，附主題控制列。",
+      "getting-started": "從 jsDelivr 或 npm 載入 FlexPlyr，以元素 ID 掛載播放器，並在 ready 回呼之後再呼叫播放器方法。",
+      "architecture": "FlexPlyr 的分層：載入時注入 head 資源、FPlyr 核心、各來源轉接、playerPanel 控制列與 when 回呼。",
+      "media-sources": "FlexPlyr 的 video、audio、youtube、vimeo 四種來源、優先順序，以及等待 YouTube／Vimeo SDK 的方式。",
+      "lifecycle-events": "FlexPlyr 的 when 回呼 ready、playing、pause、end、destroyed 觸發時機，以及 ready 早於狀態設定的原因。",
+      "mobile-fullscreen": "FlexPlyr 的全螢幕處理：桌面版對容器呼叫 requestFullscreen，行動裝置以隱藏的第二個播放器同步進度、音量與倍速。",
+      "panel-themes": "FlexPlyr 五種面板風格：預設、minimal、classic、retro、simple，以 option.panelType 設定。",
+      "panel-controls": "FlexPlyr 八種 panelItem 控制元件（play、progress、time、volume、rate、full 等）、排序與 showThumb。",
+      "configuration": "FlexPlyr 建構子完整設定：id、來源欄位、option 預設值、when 回呼、獨立容器，以及初始 volume 與 mute 的套用方式。",
+      "instance-api": "FlexPlyr 實例方法 play、pause、isPaused、isMuted、destroy，屬性 body、option、panel，與全域匯出。",
+      "runtime-dependencies": "FlexPlyr 載入時注入 head 的樣式表、圖示字型與 YouTube／Vimeo SDK，及其對 CSP 與 SSR 的影響。",
+      "deprecations": "FlexPlyr 預計於 3.x 移除的設定與全域名稱（type、panel、event、PDPlayer 等）及替代寫法。"
+    }
+  },
+  "keywords": {
+    "en": {
+      "home": "FlexPlyr, video player, YouTube player, audio player, YouTube video player, Vimeo, @pardnchiu/flexplyr",
+      "getting-started": "FlexPlyr install, jsDelivr video player, npm video player, FPlyr",
+      "architecture": "FlexPlyr architecture, video player architecture, source adapter",
+      "media-sources": "YouTube player, audio player, embed YouTube video, Vimeo, YouTube IFrame API, Vimeo Player API",
+      "lifecycle-events": "video player events, ready playing pause end, destroyed callback",
+      "mobile-fullscreen": "mobile video fullscreen, iOS playsinline, webkitPresentationMode",
+      "panel-themes": "video player themes, custom video player skin, panelType",
+      "panel-controls": "customizable video player controls, playback rate, volume slider, panelItem",
+      "configuration": "FlexPlyr options, video player configuration, panelType, panelItem, showThumb",
+      "instance-api": "FlexPlyr API, video player API, destroy, isPaused, isMuted",
+      "runtime-dependencies": "FlexPlyr CSP, Material Symbols, YouTube iframe_api, Vimeo player.js",
+      "deprecations": "FlexPlyr deprecations, PDPlayer, migration 3.x"
+    },
+    "zh": {
+      "home": "FlexPlyr, 影片播放器, YouTube 播放器, 網頁播放器, 影音播放器, Vimeo, @pardnchiu/flexplyr",
+      "getting-started": "FlexPlyr 安裝, jsDelivr, npm, FPlyr, 影片播放器 教學",
+      "architecture": "FlexPlyr 架構, 播放器架構, 來源轉接",
+      "media-sources": "YouTube 播放器, 嵌入影片, YouTube 嵌入, Vimeo, YouTube IFrame API, Vimeo Player API",
+      "lifecycle-events": "播放器事件, ready, playing, pause, end, destroyed",
+      "mobile-fullscreen": "行動裝置全螢幕, iOS playsinline, 全螢幕播放器",
+      "panel-themes": "播放器主題, 自訂播放器外觀, panelType",
+      "panel-controls": "自訂播放器控制列, 倍速, 音量條, panelItem",
+      "configuration": "FlexPlyr 設定, 播放器設定, panelType, panelItem, showThumb",
+      "instance-api": "FlexPlyr API, 播放器 API, destroy, isPaused, isMuted",
+      "runtime-dependencies": "FlexPlyr CSP, Material Symbols, YouTube iframe_api, Vimeo player.js",
+      "deprecations": "FlexPlyr 棄用, PDPlayer, 3.x 遷移"
+    }
+  },
+  "brand_keywords": [
+    "邱敬幃",
+    "Pardn Chiu",
+    "pardnchiu"
+  ],
+  "person": {
+    "id": "https://pardn.io/#pardnchiu",
+    "name": "Pardn Chiu",
+    "alt_names": [
+      "邱敬幃",
+      "Chiu Ching-Wei",
+      "pardnchiu"
+    ],
+    "same_as": [
+      "https://pardn.io/",
+      "https://www.linkedin.com/in/pardnchiu",
+      "https://github.com/pardnchiu",
+      "https://dev.to/pardnchiu",
+      "https://x.com/pardnchiu"
+    ]
+  },
+  "organization": {
+    "id": "https://pardn.io/#organization",
+    "url": "https://pardn.io/",
+    "name": "Pardn Co., Ltd",
+    "name_zh": "帕登國際有限公司",
+    "same_as": [
+      "https://github.com/pardnio"
+    ]
+  },
+  "tagline": "Taiwan · Infrastructure Engineering",
+  "og_image": "https://flexplyr.pardn.io/static/image/website.jpg",
+  "favicon": "/favicon.png",
+  "x_default": "",
+  "ai_usage": {
+    "train": "y",
+    "input": "y",
+    "search": "y"
+  },
+  "programming_language": "JavaScript",
+  "license_url": "https://opensource.org/licenses/MIT"
+}

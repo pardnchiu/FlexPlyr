@@ -1,0 +1,122 @@
+{
+  "en:home": {
+    "hash": "835546678542807bf794a7afa69f45a2239103a6d1cc3c2be1ed48ffab640716",
+    "published": "2026-10-04",
+    "modified": "2026-10-21"
+  },
+  "zh:home": {
+    "hash": "1ba5ec7b145257149af2208dcb73976e85fd081191cf3485401ef7fae634e9fc",
+    "published": "2026-10-04",
+    "modified": "2026-10-21"
+  },
+  "en:getting-started": {
+    "hash": "f657fabc1c5cd2a73510d6d14862ed92c85385b8cb149166c38b19bcbf99c650",
+    "published": "2026-10-04",
+    "modified": "2026-10-29"
+  },
+  "zh:getting-started": {
+    "hash": "6e4fff0b077fa462b2096fca2e099fe6855868d5c6d70399f389a4723c3de425",
+    "published": "2026-10-04",
+    "modified": "2026-10-29"
+  },
+  "en:architecture": {
+    "hash": "2cf7cd68ef902708f70dd4c05e27da2773bac5a348c63b18890091a6a5b6555c",
+    "published": "2026-10-04",
+    "modified": "2026-10-21"
+  },
+  "zh:architecture": {
+    "hash": "24ec94c59ff4ed4e9a35af28ebcc364234bfc205ee42142972eda9241cf01715",
+    "published": "2026-10-04",
+    "modified": "2026-10-21"
+  },
+  "en:media-sources": {
+    "hash": "8ae237c69c2782778cc9a0a0eb7a957066e15b19152dba2bd06eaffd1b09896d",
+    "published": "2026-10-04",
+    "modified": "2026-10-29"
+  },
+  "zh:media-sources": {
+    "hash": "bbdcb1984ad862124943751f038d78e3ead0efdf3cc934c16850fb3bf6db9145",
+    "published": "2026-10-04",
+    "modified": "2026-10-29"
+  },
+  "en:lifecycle-events": {
+    "hash": "8b236400fe7c4396e4e940ef11c53c9420e5bacc0ae2e4d0ae52e3cd49219298",
+    "published": "2026-10-04",
+    "modified": "2026-10-29"
+  },
+  "zh:lifecycle-events": {
+    "hash": "2d68a35fb0c4b0415b7dd0fbef5a405434d0148f00a2cd9380895d92a302b7ea",
+    "published": "2026-10-04",
+    "modified": "2026-10-29"
+  },
+  "en:mobile-fullscreen": {
+    "hash": "4b68d7e58762cd41ce6f8b1cbcea6fca176079752820f55c02e831828e418a14",
+    "published": "2026-10-04",
+    "modified": "2026-10-29"
+  },
+  "zh:mobile-fullscreen": {
+    "hash": "4f4ff7d53090d1b67de362e9a2528f9602ce0c1b70d3cc7f596378d3848b6741",
+    "published": "2026-10-04",
+    "modified": "2026-10-29"
+  },
+  "en:panel-themes": {
+    "hash": "e13ba9814eda251eea182634943031970cd38ab4f7245cd04ee447ab91ee8214",
+    "published": "2026-10-04",
+    "modified": "2026-10-29"
+  },
+  "zh:panel-themes": {
+    "hash": "d7e270d04db86bea5b8778bebf8447dd7b763944b2198769e2b650fe0cc79c6b",
+    "published": "2026-10-04",
+    "modified": "2026-10-29"
+  },
+  "en:panel-controls": {
+    "hash": "0f638b21a690387f56146f3d68f9b90c84e6c313a9dca58b8a6fe9c8fcdac3a1",
+    "published": "2026-10-04",
+    "modified": "2026-10-29"
+  },
+  "zh:panel-controls": {
+    "hash": "8002c78b48b25c2688597512513171b9bab89f094c005b51ef61c88ee72ec07e",
+    "published": "2026-10-04",
+    "modified": "2026-10-29"
+  },
+  "en:configuration": {
+    "hash": "07d3739bab3d3cd7ada1a8d1bc680a4ac230de719d17b0842a9e4e1481a39162",
+    "published": "2026-10-04",
+    "modified": "2026-10-29"
+  },
+  "zh:configuration": {
+    "hash": "dee29bcd2bdc7db4b45546fb356509ef83ec74e1a38a915e2d59c007e091ba6e",
+    "published": "2026-10-04",
+    "modified": "2026-10-29"
+  },
+  "en:instance-api": {
+    "hash": "05f718f1e834247d14149161b9201f90fa4f49212246ba772863092fb6072b1e",
+    "published": "2026-10-04",
+    "modified": "2026-10-29"
+  },
+  "zh:instance-api": {
+    "hash": "5007aa7d0b6c731702dd2ef07a1a099cdc1454e2493ebc590cbe6e35540597e0",
+    "published": "2026-10-04",
+    "modified": "2026-10-29"
+  },
+  "en:runtime-dependencies": {
+    "hash": "7525515ef2ee9b66209c02b4645902a66dac34653d19a0202a28571c17840e50",
+    "published": "2026-10-04",
+    "modified": "2026-10-21"
+  },
+  "zh:runtime-dependencies": {
+    "hash": "dd6d14fc787174206df84f0f782181c4b6f98abf7c795b37c05c88a4889c431a",
+    "published": "2026-10-04",
+    "modified": "2026-10-21"
+  },
+  "en:deprecations": {
+    "hash": "e526d3b4f252d0de9ab8907a30fa0920655ab3d1faec37ffee783a05a5e66229",
+    "published": "2026-10-04",
+    "modified": "2026-10-29"
+  },
+  "zh:deprecations": {
+    "hash": "b3eeae0473c6fd6af94aa1599f6b7f3f6460f6171d75d629368b3fdd8b3225f5",
+    "published": "2026-10-04",
+    "modified": "2026-10-29"
+  }
+}
