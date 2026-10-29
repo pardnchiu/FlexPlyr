@@ -6,7 +6,7 @@ const { Parse } = require("@pardnchiu/nanomd");
 const TEMPLATE_VERSION = "7.2.0"; // wiki-generate template version; see scripts/templates/CHANGELOG.md
 
 // === Site config — filled in by wiki-generate when this template is copied into a project ===
-const SITE_NAME = "pardnchiu/FlexPlyr";
+const SITE_NAME = "FlexPlyr";
 const DOMAIN = "https://flexplyr.pardn.io";
 const REPO = "pardnchiu/FlexPlyr"; // owner/repo
 const AUTHOR_NAME = "邱敬幃 Pardn Chiu";
